@@ -42,7 +42,7 @@ public class TokenOperator extends Token implements Comparator<TokenOperator> {
         return type.toString();
     }
 
-
+//kkkkk
     @Override
     public int compare(TokenOperator o1, TokenOperator o2) {
         if ((o1.type == OperatorType.Add || o1.type == OperatorType.Subtract)
