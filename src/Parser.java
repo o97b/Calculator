@@ -14,18 +14,21 @@ public class Parser {
     public Queue<Token> parse(String expr) {
         state = State.Start;
         brackets = 0;
-        queue = new Queue<Token>();
+        queue = new Queue<>();
         number = new StringBuilder();
+
         for (int i = 0; i < expr.length(); i++) {
             ProcessChar(expr.charAt(i));
             if (state == State.Error) { return null; }
         }
+
         ProcessEnd();
         return (state == State.Ok) ? queue : null;
     }
 
     private void ProcessChar(char ch) {
-        if (Character.isWhitespace(ch)) { return;}
+        if (Character.isWhitespace(ch)) { return; }
+
         switch (state) {
             case Start:
                 switch (ch) {
@@ -47,6 +50,7 @@ public class Parser {
                         break;
                 }
                 break;
+
             case WaitNumberOrOpenBracket:
                 switch (ch)
                 {
@@ -65,6 +69,7 @@ public class Parser {
                         break;
                 }
                 break;
+
             case ReadNumber:
                 switch (ch) {
                     case '0': case '1': case '2': case '3': case '4':
@@ -94,6 +99,7 @@ public class Parser {
                         break;
                 }
                 break;
+
             case ReadNumberAfterDot:
                 switch (ch) {
                     case '0': case '1': case '2': case '3': case '4':
@@ -106,6 +112,7 @@ public class Parser {
                         break;
                 }
                 break;
+
             case ReadNumberHasDot:
                 switch (ch) {
                     case '0': case '1': case '2': case '3': case '4':
@@ -131,6 +138,7 @@ public class Parser {
                         break;
                 }
                 break;
+
             case WaitOperator:
                 switch (ch)
                 {

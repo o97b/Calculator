@@ -13,12 +13,13 @@ public class Main {
         Queue<Token> queue = parser.parse(string);
         if (queue == null) {
             System.out.println("ERROR");
-        } else {
+        }
+        else {
             queue = SortingStation.sorting(queue);
 
             while (!queue.isEmpty()) {
                 System.out.println(Calculator.calculate(queue));
-//                System.out.println(queue.dequeue().toString());
+//              System.out.println(queue.dequeue().toString());
             }
         }
     }
