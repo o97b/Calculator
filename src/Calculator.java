@@ -26,7 +26,7 @@ public class Calculator {
                         stack.push(tokenResult);
                         break;
                     case Divide:
-                        if (secondNum == 0) { throw new NullPointerException("Деление на ноль"); }
+                        if (secondNum == 0) { throw new NullPointerException("Деление на ноль!"); }
                         tokenResult = new TokenNumber(firstNum / secondNum);
                         stack.push(tokenResult);
                         break;

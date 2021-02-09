@@ -7,11 +7,13 @@ public class SortingStation {
         Token token;
         Queue<Token> queueOut = new Queue<>();
         Stack<Token> stack = new Stack<>();
+
         while (!queue.isEmpty()) {
             token = queue.dequeue();
             if (token instanceof TokenNumber) {
                 queueOut.enqueue(token);
-            } else if (token instanceof TokenOperator) {
+            }
+            else if (token instanceof TokenOperator) {
                 if (!stack.isEmpty()) {
                     while (stack.peek() instanceof TokenOperator) {
                         if (((TokenOperator) token).compareTo((TokenOperator) stack.peek()) > 0) break;
@@ -20,14 +22,15 @@ public class SortingStation {
                     }
                 }
                 stack.push(token);
-            } else if (token instanceof TokenBracket) {
+            }
+            else if (token instanceof TokenBracket) {
                 if (((TokenBracket)token).isOpening) {
                     stack.push(token);
-                } else {
+                }
+                else {
                     if (!stack.isEmpty()) {
                         while (!(stack.peek() instanceof TokenBracket)) {
                             queueOut.enqueue(stack.pop());
-                            if (stack.isEmpty()) throw new Exception("В выражении пропущена скобка");
                         }
                         stack.pop();
                     }
@@ -35,9 +38,6 @@ public class SortingStation {
             }
         }
         while (!stack.isEmpty()) {
-            if (stack.peek() instanceof TokenBracket) {
-                throw new Exception("В выражении незакрытая скобка");
-            }
             queueOut.enqueue(stack.pop());
         }
         return queueOut;

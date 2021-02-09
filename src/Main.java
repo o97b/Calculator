@@ -12,7 +12,7 @@ public class Main {
         Parser parser = new Parser();
         Queue<Token> queue = parser.parse(string);
         if (queue == null) {
-            System.out.println("ERROR");
+            System.out.println("Некорректное выражение!");
         }
         else {
             queue = SortingStation.sorting(queue);

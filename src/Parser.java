@@ -1,6 +1,7 @@
 import sun.misc.Queue;
 
 public class Parser {
+
     enum State {
         Start, Ok, Error, WaitNumberOrOpenBracket,
         ReadNumber, ReadNumberAfterDot, ReadNumberHasDot, WaitOperator
@@ -16,12 +17,10 @@ public class Parser {
         brackets = 0;
         queue = new Queue<>();
         number = new StringBuilder();
-
         for (int i = 0; i < expr.length(); i++) {
             ProcessChar(expr.charAt(i));
             if (state == State.Error) { return null; }
         }
-
         ProcessEnd();
         return (state == State.Ok) ? queue : null;
     }
@@ -37,7 +36,8 @@ public class Parser {
                         queue.enqueue(new TokenBracket(true));
                         break;
                     case '+': case '-':
-                        queue.enqueue((new TokenOperator(ch, true)));
+                        queue.enqueue(new TokenUnaryOperator(ch));
+                        number.append(ch);
                         state = State.WaitNumberOrOpenBracket;
                         break;
                     case '0': case '1': case '2': case '3': case '4':
