@@ -1,5 +1,5 @@
 import java.util.Comparator;
 
-public abstract class Token{
+public abstract class Token {
 
 }

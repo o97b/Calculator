@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class TokenOperator extends Token implements Comparator<TokenOperator> {
+public class TokenOperator extends Token implements Comparable<TokenOperator> {
     public OperatorType type;
 
     public TokenOperator(char ch)  {
@@ -37,13 +37,6 @@ public class TokenOperator extends Token implements Comparator<TokenOperator> {
         }
     }
 
-    @Override
-    public String toString() {
-        return type.toString();
-    }
-
-//kkkkk
-    @Override
     public int compare(TokenOperator o1, TokenOperator o2) {
         if ((o1.type == OperatorType.Add || o1.type == OperatorType.Subtract)
                 && (o2.type == OperatorType.Divide || o2.type == OperatorType.Multiply)) {
@@ -54,5 +47,16 @@ public class TokenOperator extends Token implements Comparator<TokenOperator> {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public int compareTo(TokenOperator o) {
+        return compare(this, o);
+    }
+
+
+    @Override
+    public String toString() {
+        return type.toString();
     }
 }

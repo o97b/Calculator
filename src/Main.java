@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String string = bufferedReader.readLine();
 
@@ -14,9 +14,11 @@ public class Main {
         if (queue == null) {
             System.out.println("ERROR");
         } else {
-//            SortingStation.sorting(queue);
+            queue = SortingStation.sorting(queue);
+
             while (!queue.isEmpty()) {
-                System.out.println(queue.dequeue().getClass());
+                System.out.println(Calculator.calculate(queue));
+//                System.out.println(queue.dequeue().toString());
             }
         }
     }
